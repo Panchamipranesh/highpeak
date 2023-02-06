@@ -1,0 +1,28 @@
+def find_maximum_profit(jobs, n):
+    jobs = sorted(jobs, key=lambda x:x[1])
+    total_profit = 0
+    job_done = 0
+    current_time = 0
+    for i in jobs:
+        if i[0] >= current_time:
+            current_time = i[1]
+            total_profit += i[2]
+            job_done += 1
+        return (n-job_done, total_profit)
+    
+def main():
+    n = int(input('Enter the number of jobs:'))
+    jobs = []
+    for i in range(n):
+        start_time = int(input('Enter the start time: '))
+        end_time = int(input('Enter the end time: '))
+        profit = int(input('Enter the profit for the job: '))
+        jobs.append([start_time, end_time, profit])
+    result = find_maximum_profit(jobs, n)
+    print('total tasks and earnings available for others : ')
+    print('task', result[0])
+    print('Earnings', result[1])
+    
+
+if _name_ == '_main_':
+    main()
